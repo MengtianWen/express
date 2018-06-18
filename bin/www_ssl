@@ -1,0 +1,85 @@
+#!/usr/bin/env node
+
+var app = require('../app');
+var debug = require('debug')('Web:server');
+var http = require('http');
+var https = require('https');
+
+var ssl = require('../settings/custom_settings').ssl;
+var credentials = ssl['luneice'];
+
+var httpServer = http.createServer(app);
+var httpPort = process.env.PORT || 8080;
+app.set('port', httpPort);
+httpServer.listen(httpPort);
+httpServer.on('error', httpOnError);
+httpServer.on('listening', onListeningHTTP);
+
+var httpsServer = https.createServer(credentials, app);
+var httpsPort = process.env.PORT || 8443;
+app.set('port', httpsPort);
+httpsServer.listen(httpsPort);
+httpsServer.on('error', httpsOnError);
+httpsServer.on('listening', onListeningHTTPS);
+
+function httpOnError(error) {
+	if (error.syscall !== 'listen') {
+		throw error;
+	}
+
+	var bind = typeof httpPort === 'string'
+			? 'Pipe ' + httpPort
+			: 'Port ' + httpPort;
+
+	switch (error.code) {
+		case 'EACCES':
+			console.error(bind + ' requires elevated privileges');
+			process.exit(1);
+			break;
+		case 'EADDRINUSE':
+			console.error(bind + ' is already in use');
+			process.exit(1);
+			break;
+		default:
+			throw error;
+	}
+}
+
+function onListeningHTTP() {
+	var httpAddr = httpServer.address();
+	var bind = typeof httpAddr === 'string'
+			? 'pipe ' + httpAddr
+			: 'port ' + httpAddr.port;
+	debug('Listening on ' + bind);
+}
+
+function httpsOnError(error) {
+	if (error.syscall !== 'listen') {
+		throw error;
+	}
+
+	var bind = typeof httpsPort === 'string'
+			? 'Pipe ' + httpsPort
+			: 'Port ' + httpsPort;
+
+	switch (error.code) {
+		case 'EACCES':
+			console.error(bind + ' requires elevated privileges');
+			process.exit(1);
+			break;
+		case 'EADDRINUSE':
+			console.error(bind + ' is already in use');
+			process.exit(1);
+			break;
+		default:
+			throw error;
+	}
+}
+
+function onListeningHTTPS() {
+	var httpsAddr = httpsServer.address();
+	var bind = typeof httpsAddr === 'string'
+			? 'pipe ' + httpsAddr
+			: 'port ' + httpsAddr.port;
+	debug('Listening on ' + bind);
+}

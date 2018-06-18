@@ -1,0 +1,7 @@
+{
+  "des": "路径是相对于 public 而言的",
+  "response": {
+    "index": "./response/index.html",
+    "sharedocs": ""
+  }
+}

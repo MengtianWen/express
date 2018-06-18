@@ -1,0 +1,10 @@
+{
+  "test": {
+    "host": "localhost",
+    "dbname": "test"
+  },
+  "user": {
+    "host": "localhost",
+    "dbname": "test"
+  }
+}

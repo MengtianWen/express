@@ -1,0 +1,10 @@
+doctype html
+html
+    head
+        title=title
+        meta(name="viewport" content="initial-scale=1.0, maximum-scale=5.0, user-scalable=yes")
+        link(rel='stylesheet', href='/blog/css/index.css')
+    body
+        block content
+        p 您访问的是PC端 #{title}
+        p 其他信息 #{dbinfo}

@@ -1,0 +1,130 @@
+body{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    background-color: #F5F5F5;
+}
+
+.head-cont{
+    position: fixed;
+    height: 2.8em;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 5px 0 rgba(150, 150, 150, .5);
+    z-index: 10;
+}
+
+.body-cont{
+    position: relative;
+    margin-top: 2.5em;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+/*段落文字的样式*/
+p.p{
+    display: block;
+    margin: .33em auto;
+    letter-spacing: .12em;
+    padding: 0.75em;
+}
+
+div.code-cont{
+    font-size: 16px;
+    position: relative;
+    margin: 0 auto;
+    padding: .75em;
+    border: .8em solid #FFFFFF;
+    background-color: #F4F4F4;
+}
+
+/*CSS代码的样式*/
+div.code-cont.css:after{
+    content: 'CSS';
+    color: rgba(101,109,120,1);
+    position: absolute;
+    right: .5em;
+    top: .2em;
+    font-size: 14px;
+}
+
+div.code{
+    margin: .5em 0;
+    counter-reset: lines;
+}
+
+div.line{
+    display: flex;
+}
+
+div.line:before{
+    counter-increment: lines;      /* 增加计数器值 */
+    content: counter(lines) '\b\b'; /* 显示计数器 */
+}
+
+span.start, span.end{
+    color: rgba(101,109,120,1);
+}
+
+span.start{
+    margin-left: .5em;
+}
+
+span.tag{
+    color: rgba(233, 87, 63, 1);
+}
+
+span.string{
+    color: rgba(150,122,220,1);
+}
+
+span.colon, span.sem{
+    color: rgba(128,103,183,1);
+}
+
+span.colon{
+    margin-right: .5em;
+}
+
+span.key{
+    color: rgba(72,207,173,1);
+}
+
+span.value{
+    color: rgba(93,156,236,1);
+}
+
+div.retract{
+    padding: 0 1.5em;
+}
+
+/*HTML样式代码*/
+div.code-cont.html:after{
+    content: 'HTML';
+    font-size: 14px;
+    color: rgba(101,109,120,1);
+    position: absolute;
+    right: .5em;
+    top: .2em;
+}
+
+/*JS样式代码*/
+div.code-cont.js:after{
+    content: 'JS';
+    font-size: 14px;
+    color: rgba(101,109,120,1);
+    position: absolute;
+    right: .5em;
+    top: .2em;
+}
+
+/*SH样式代码*/
+div.code-cont.shell:after{
+    content: 'SH';
+    font-size: 14px;
+    color: rgba(101,109,120,1);
+    position: absolute;
+    right: .5em;
+    top: .2em;
+}

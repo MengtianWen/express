@@ -1,0 +1,6 @@
+这里是 express 框架的路由逻辑控制文件
+
+# 核心路由文件 route_settings.js
+route_settings.js 路由目录文件，交由 app.js 映射对应的路由逻辑
+
+# 路由逻辑控制文件是通用的

@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+var app = require('../app');
+var debug = require('debug')('Web:server');
+var http = require('http');
+
+var httpServer = http.createServer(app);
+var httpPort = process.env.PORT || 3000;
+app.set('port', httpPort);
+httpServer.listen(httpPort);
+httpServer.on('error', httpOnError);
+httpServer.on('listening', onListeningHTTP);
+
+function httpOnError(error) {
+	if (error.syscall !== 'listen') {
+		throw error;
+	}
+
+	var bind = typeof httpPort === 'string'
+			? 'Pipe ' + httpPort
+			: 'Port ' + httpPort;
+
+	switch (error.code) {
+		case 'EACCES':
+			console.error(bind + ' requires elevated privileges');
+			process.exit(1);
+			break;
+		case 'EADDRINUSE':
+			console.error(bind + ' is already in use');
+			process.exit(1);
+			break;
+		default:
+			throw error;
+	}
+}
+
+function onListeningHTTP() {
+	var httpAddr = httpServer.address();
+	var bind = typeof httpAddr === 'string'
+			? 'pipe ' + httpAddr
+			: 'port ' + httpAddr.port;
+	debug('Listening on ' + bind);
+}
