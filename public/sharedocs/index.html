@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+	<title>工作情况</title>
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;
+			font-size: 16px;
+			background-color: #F5F5F5;
+			--li-height: 35px;
+			--nav-heught: 40px;
+		}
+		
+		ul, li{
+			padding: 0;
+			margin: 0;
+			list-style-type: none;
+		}
+		
+		input{
+			border: 0;
+			margin: 0;
+			outline: none;
+			height: var(--li-height);
+			line-height: var(--li-height);
+			font-size: inherit;
+			box-sizing: border-box;
+			background-color: inherit;
+		}
+		
+		.head-cont{
+			top: 0;
+			width: 100%;
+			position: absolute;
+			height: var(--nav-heught);
+			line-height: var(--nav-heught);
+			background-color: #FFFFFF;
+			box-shadow: 0 0 5px 1px rgba(180, 180, 180, .7);
+		}
+		
+		/*上传按钮*/
+		.back-cont, .submit-cont{
+			display: inline-block;
+			position: absolute;
+			margin: 0 auto;
+			width: 80px;
+		}
+		
+		.back-cont{
+			left: 0;
+		}
+		
+		.submit-cont{
+			right: 0;
+		}
+		
+		.submit{
+			width: 100%;
+			height: var(--nav-heught);
+			background: url("./image/upload.svg") no-repeat center;
+			background-size: 50%;
+		}
+		
+		.submit:active{
+			background-color: rgba(240, 240, 240, 1);
+		}
+		
+		.back{
+			width: 100%;
+			height: var(--nav-heught);
+			background: url("./image/back.svg") no-repeat center;
+			background-size: 50%;
+		}
+		
+		.body-cont{
+			margin-top: 50px;
+			width: 100%;
+		}
+		
+		.file-cont{
+			position: relative;
+			margin: 20px auto;
+			width: 95%;
+			background-color: #FFFFFF;
+			border-radius: 2px;
+			box-shadow: 0 0 4px 0 rgba(160, 160, 160, .7);
+		}
+		
+		.file-cont:active{
+			background-color: #F9F9F9;
+		}
+		
+		.file-bc{
+			position: absolute;
+			margin: 20px auto;
+			width: 140px;
+			height: 140px;
+			top:0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+		
+		.file-bc{
+			background: url("./image/add.svg") no-repeat center;
+			background-size: 70%;
+			z-index: 5;
+		}
+		
+		.filename, .progress{
+			position: absolute;
+			height: 30px;
+			line-height: 30px;
+			font-size: 14px;
+			bottom: 0;
+			text-align: center;
+			overflow : hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			border: 0;
+			z-index: 0;
+		}
+		
+		.filename{
+			width: 100%;
+			z-index: 1;
+		}
+		
+		.progress{
+			background: #00d2ff;  /* fallback for old browsers */
+			background: -webkit-linear-gradient(to left, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to left, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			width: 0;
+		}
+		
+		#file{
+			position: relative;
+			margin: 0 auto;
+			z-index: 10;
+			opacity: 0;
+			display: block;
+			width: 100%;
+			height: 200px;
+		}
+		
+		.form{
+			position: relative;
+			display: flex;
+			justify-content: space-around;
+			margin: 20px auto;
+			width: 98%;
+		}
+		
+		.special-cont{
+			width: 60%;
+		}
+		
+		.date-cont{
+			width: 35%;
+		}
+		
+		.input-cont{
+			display: flex;
+			background-color: #FFFFFF;
+			box-shadow: 1px 0 1px 0 rgba(160, 160, 160, .2), -1px -1px 1px 0 rgba(160, 160, 160, .2);
+		}
+		
+		.special-ipt, .date-ipt{
+			width: calc(100% - var(--li-height));
+			text-indent: .3em;
+			letter-spacing: .1em;
+		}
+		
+		input.select{
+			background: url("./image/list.svg") no-repeat center;
+			background-size: 65%;
+			width: var(--li-height);
+			background-color: #F5F5F5;
+		}
+		
+		.special-ul, .date-ul{
+			background-color: #FFFFFF;
+			border-radius: 0 0 2px 2px;
+			box-shadow: 1px 1px 1px 0 rgba(160, 160, 160, .2), -1px 0 1px 0 rgba(160, 160, 160, .2);
+			max-height: calc(4 * var(--li-height));
+			overflow-y: scroll;
+		}
+		
+		.special-ul li, .date-ul li{
+			font-size: 14px;
+			padding: 0 10px;
+			height: var(--li-height);
+			line-height: var(--li-height);
+		}
+		
+		.special-ul li:hover, .date-ul li:hover{
+			background-color: #F5F5F5;
+		}
+		
+		.notice-cont{
+			width: 60%;
+			height: 40px;
+			margin: 0 auto;
+			margin-top: 20px;
+			position: relative;
+			background-color: #FFFFFF;
+			box-shadow: 0 0 5px 1px rgba(200, 200, 200, .7);
+		}
+		
+		.notice{
+			color: #fbbd30;
+			line-height: 40px;
+			text-align: center;
+		}
+	</style>
+	<link rel="dns-prefetch" href="https://gosspublic.alicdn.com">
+	<link rel="dns-prefetch" href="https://public-cdns.oss-cn-shenzhen.aliyuncs.com">
+</head>
+<body>
+<div class="head-cont">
+	<div class="back-cont">
+		<div class="back"></div>
+	</div>
+	<div class="submit-cont">
+		<div class="submit" id="file-button"></div>
+	</div>
+</div>
+<div class="body-cont">
+	<div class="file-cont">
+		<div class="file-bc"></div>
+		<div class="filename">添加您要分享的文档</div>
+		<div id="progress-bar" class="progress"></div>
+		<input type="file" id="file" accept="*/*"/>
+	</div>
+	<div class="form">
+		<div class="special-cont">
+			<div class="input-cont">
+				<input type="text" class="special-ipt" title="专业" placeholder="文件所属专业" :specialid="specialid" v-model="special" @keyup="changed($event)" @keydown.down.prevent="selectDown" @keydown.up.prevent="selectUp"><input class="select" type="button" v-on:click="specialListShow = !specialListShow"/>
+			</div>
+			<ul class="special-ul" v-if="specialListShow">
+				<li is="special-item"
+				    v-for="todo in todos"
+				    v-bind:id="todo.id"
+				    v-bind:title="todo.title">
+				</li>
+			</ul>
+		</div>
+		<div class="date-cont">
+			<div class="input-cont">
+				<input type="text" class="special-ipt" title="专业" placeholder="文件日期" :dateid="dateid" :value="date"><input class="select" type="button" v-on:click="dateListShow = !dateListShow"/>
+			</div>
+			<ul class="date-ul" v-if="dateListShow">
+				<li is="date-item"
+				    v-for="todo in todos"
+				    v-bind:id="todo.id"
+				    v-bind:title="todo.title">
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="notice-cont" style="display: none;">
+		<div class="notice">请选择文件</div>
+	</div>
+</div>
+<div class="footer-cont">
+</div>
+<script src="https://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+<script src="https://public-cdns.oss-cn-shenzhen.aliyuncs.com/promise-6.1.0.js"></script>
+<script src="https://public-cdns.oss-cn-shenzhen.aliyuncs.com/jquery-2.2.4.min.js"></script>
+<script src="https://public-cdns.oss-cn-shenzhen.aliyuncs.com/qwest.min.js"></script>
+<script src="https://public-cdns.oss-cn-shenzhen.aliyuncs.com/vue.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>知了</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+    <link rel="stylesheet" href="signups/css/swiper.min.css">
+</head>
+<style type="text/css">
+    body{
+        position: absolute;
+        margin: 0 auto;
+        padding: 0;
+        font-size: 16px;
+        background-color: #F5F5F5;
+        --head-cont-height: 45px;
+        --head-cont-width: 100%;
+        --max-width: 720px;
+        width: 100%;
+        min-width: 320px;
+    }
+
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .swiper-container {
+        width: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+
+    .loader {
+        position: relative;
+        margin: 40px 0 0 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        background-color: #03a9f4;
+        border-radius: 50%;
+    }
+
+    .loader::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        border: 0 solid white;
+        transform: translate(-50%, -50%);
+        animation: loading 1000ms ease-out forwards infinite;
+    }
+
+    @keyframes loading {
+        0% {
+            border: 0 solid #F5F5F5;
+        }
+
+        20% {
+            border: 8px solid #F5F5F5;
+            width: 0;
+            height: 0;
+        }
+
+        100% {
+            border: 8px solid #F5F5F5;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .more-cont{
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        letter-spacing: .2em;
+        font-size: 14px;
+        background-color: #e0e0e0;
+    }
+
+    .head-cont{
+        position: fixed;
+        height: var(--head-cont-height);
+        width: var(--head-cont-width);
+        background-color: #FFFFFF;
+        box-shadow: 0 0 5px 2px rgba(100, 100, 100, .1);
+        z-index: 2;
+    }
+
+    .nav-cont{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        --nav-item--comm-width: 25%;
+        --nav-item--comm-height: var(--head-cont-height);
+        line-height: var(--nav-item--comm-height);
+        text-align: center;
+    }
+
+    .nav-item--comm{
+        display: inline-block;
+        width: var(--nav-item--comm-width);
+        height: var(--nav-item--comm-height);
+        letter-spacing: .1em;
+    }
+
+    .nav-a--cont{
+        display: inline-block;
+        box-sizing: border-box;
+        width: 65%;
+        height: inherit;
+        color: rgb(20, 20, 20);
+        border-top: 2px solid transparent;
+        border-bottom: 2px solid transparent;
+    }
+
+    .nav-a--cont.active{
+        color: rgb(66, 166, 244);
+        border-bottom-color: rgb(66, 166, 244);
+    }
+
+    .body-cont{
+        margin: 0 auto;
+        margin-top: 53px;
+        max-width: var(--max-width);
+    }
+
+    .datum-cont--comm{
+        margin: 10px auto;
+        width: 96%;
+        background-color: #FFFFFF;
+        height: 65px;
+        --datum-height: 60px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+        border-radius: 1px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        font-size: 15px;
+    }
+
+    .datum-word--icon{
+        background: url("signups/images/word.svg") no-repeat center;
+    }
+
+    .datum-pdf--icon{
+        background: url("resource/image/pdf.svg") no-repeat center;
+    }
+
+    .datum-ppt--icon{
+        background: url("resource/image/ppt.svg") no-repeat center;
+    }
+
+    .datum-zip--icon{
+        background: url("resource/image/zip.svg") no-repeat center;
+    }
+
+    .datum-image--icon{
+        background: url("signups/images/images.svg") no-repeat center;
+    }
+
+    .datum-code--icon{
+        background: url("signups/images/code.svg") no-repeat center;
+    }
+
+    .datum-exe--icon{
+        background: url("signups/images/exe.svg") no-repeat center;
+    }
+
+    .datum-wangpan--icon{
+        background: url("signups/images/baiduyun.svg") no-repeat center;
+    }
+
+    .datum-icon--comm{
+        height: 100%;
+        width: var(--datum-height);
+        background-size: 85%;
+        color: rgb(66, 166, 244);
+    }
+
+    .datum-txt--comm{
+        width: calc(100% - var(--datum-height) - 50px);
+        text-align: left;
+        text-indent: .3em;
+        line-height: 65px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .datum-op--comm{
+        width: 50px;
+        height: 100%;
+    }
+
+    .dataum-download{
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: url("signups/images/download.svg") no-repeat center;
+        background-size: 85%;
+    }
+
+    .footer-cont{
+        margin: 0 auto;
+        max-width: var(--max-width);
+    }
+
+</style>
+<body>
+<div class="head-cont">
+    <div class="nav-cont">
+        <div class="nav-item--comm" id="study"><div class="nav-a--cont active">学习</div></div>
+        <div class="nav-item--comm" id="luck"><div class="nav-a--cont">玩乐</div></div>
+        <div class="nav-item--comm" id="broadcast"><div class="nav-a--cont">广播</div></div>
+        <div class="nav-item--comm" id="datum"><div class="nav-a--cont">资源</div></div>
+    </div>
+</div>
+<div class="body-cont">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide study" id="study-content-0">
+
+            </div>
+            <div class="swiper-slide luck" id="luck-content-0">
+
+            </div>
+            <div class="swiper-slide broadcast" id="broadcast-content-0">
+
+            </div>
+            <div class="swiper-slide datum" id="datum-content-0">
+                <div class="datum-cont--comm">
+                    <div class="datum-icon--comm datum-word--icon"></div>
+                    <div class="datum-txt--comm">
+                        [2017]电院高等数学1期末复习资料
+                    </div>
+                    <div class="datum-op--comm">
+                        <a class="dataum-download"></a>
+                    </div>
+                </div>
+                <div class="fake--cont">
+
+                </div>
+                <div class="datum-cont--comm">
+                    <div class="datum-icon--comm datum-word--icon"></div>
+                    <div class="datum-txt--comm">
+                        [2017]电院高等数学1期末复习资料
+                    </div>
+                    <div class="datum-op--comm">
+                        <a class="dataum-download"></a>
+                    </div>
+                </div>
+                <div class="datum-cont--comm">
+                    <div class="datum-icon--comm datum-zip--icon"></div>
+                    <div class="datum-txt--comm">
+                        [2017]电院高等数学1期末复习资料
+                    </div>
+                    <div class="datum-op--comm">
+                        <a class="dataum-download"></a>
+                    </div>
+                </div>
+                <div class="datum-cont--comm">
+                    <div class="datum-icon--comm datum-word--icon"></div>
+                    <div class="datum-txt--comm">
+                        [2017]电院高等数学1期末复习资料
+                    </div>
+                    <div class="datum-op--comm">
+                        <a class="dataum-download"></a>
+                    </div>
+                </div>
+                <div class="datum-cont--comm">
+                    <div class="datum-icon--comm datum-zip--icon"></div>
+                    <div class="datum-txt--comm">
+                        [2017]电院高等数学1期末复习资料
+                    </div>
+                    <div class="datum-op--comm">
+                        <a class="dataum-download"></a>
+                    </div>
+                </div>
+                <div class="more-cont">
+                    获取更多
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-cont">
+
+</div>
+<script type="text/javascript" src="resource/js/jquery-3.2.1.min.js"></script>
+<script src="resource/js/swiper.jquery.min.js"></script>
+<script type="text/javascript">
+    (function (window) {
+        var AA = AA || {};
+        /*模型层，数据的容器*/
+        AA.M = (function () {
+            var data = {
+                study: [],
+                luck: [],
+                broadcast: [],
+                datum: []
+            };
+            /*请求哪个页面的数据*/
+            var get = function (index, callback) {
+                var url = '/getdata';
+                var param = {
+                    func: null,
+                    page: 1,
+                    fromat: 3,
+                    sort: 'goddess',
+                    t: new Date().getMilliseconds()
+                };
+
+                if (typeof index === 'object'){
+                    for (var key in param){
+                        param[key] = (index[key] === undefined ? param : index)[key];
+                    }
+                    index = param.func;
+                }else {
+                    /*若index不是object*/
+                    param.func = index;
+                }
+
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    dataType: 'json',
+                    timeout : 8000,
+                    data: param,
+                    beforeSend: function () {
+                        // console.log('执行前');
+                    },
+                    success: function (res) {
+                        // console.log('执行成功', res);
+                        data[index] = res[index];
+                        callback();
+                    },
+                    error: function (jqXHR, textStatus) {
+                        console.log('执行失败', textStatus);
+                        if(textStatus === 'timeout'){
+                            callback();
+                        }
+                    }
+                });
+            };
+
+            return {
+                data: data,
+                get: get
+            }
+        })();
+
+        /*视图层，负责动画和交互*/
+        AA.V = (function () {
+            var M = AA.M;
+            var html = {
+                "study": null,
+                "luck": null,
+                "broadcast": null,
+                "datum":
+                '<div class="datum-cont--comm">' +
+                '<div class="datum-icon--comm datum-{#type#}--icon"></div>' +
+                '<div class="datum-txt--comm">' +
+                '{#name#}' +
+                '</div>' +
+                '<div class="datum-op--comm">' +
+                '<a href="{#url#}" target="_blank" download="" class="dataum-download"></a>' +
+                '</div>' +
+                '</div>'
+            };
+            //解析数据
+            var format = function (str, data) {
+                var html = '';
+                if (data instanceof Array) {
+                    for (var i = 0, len = data.length; i < len; i++) {
+                        html += arguments.callee(str, data[i]);
+                    }
+                    return html;
+                } else {
+                    return str.replace(/{#(\w+)#}/g, function (match, key) {
+                        return typeof data === 'string' ? data : (typeof data[key] === 'undefined' ? '' : data[key]);
+                    });
+                }
+            };
+
+            var resizeSwiperContainer = function (e) {
+                var swiperslide = $('.' + e);
+                var swipercontainer = $('.swiper-container');
+                swipercontainer[0].style.height = swiperslide[0].scrollHeight + 'px';
+            };
+
+            var pagestack = ['study'];
+            /*swiper页面索引*/
+            var page = {
+                'study': 0,
+                'luck': 1,
+                'broadcast': 2,
+                'datum': 3,
+                '0': 'study',
+                '1': 'luck',
+                '2': 'broadcast',
+                '3': 'datum'
+            };
+            /*滑动屏幕时处罚*/
+            var swiper = new Swiper('.swiper-container', {
+                spaceBetween: 2,
+                autoHeight: true,
+                onSlideChangeEnd: function(swiper){
+                    var index = page[swiper.activeIndex];
+                    $('.nav-a--cont').removeClass('active');
+                    $('#'+ index).children('.nav-a--cont').addClass('active');
+                    pagestack.pop();pagestack.push(index);
+                    resizeSwiperContainer(index);
+                }
+            });
+
+            var touchAction = {
+                nav: function () {
+                    /*点击此处才会更新容器里面的内容*/
+                    /*改变导航栏状态*/
+                    $('.nav-a--cont').removeClass('active');
+                    $(this).children('.nav-a--cont').addClass('active');
+                    /*swipe到指定的页面*/
+                    var index = this.getAttribute('id');
+                    var swiperslide = $('.'+ index);
+                    resizeSwiperContainer(index);
+                    swiper.slideTo(page[index], 800, false);
+                    /*刷新当前的页面，获取最新的数据*/
+                    if (pagestack.pop() === index){
+                        swiperslide.empty().prepend($.parseHTML('<div class="loader"></div>'));
+                        M.get(index, function () {
+                            /*结果返回回调该方法*/
+                            /*移除加载动画*/
+                            $('.loader').remove();
+                            /*根据模板解析数据*/
+                            var elements = format(html[index], M.data[index]);
+                            swiperslide.prepend($.parseHTML(elements)).append('<div class="more-cont">获取更多</div>');
+                        });
+                    }
+                    pagestack.push(index);
+                },
+                more: function () {
+                    var that = this;
+                    /*获取当前节点*/
+                    var node = $(this)[0].parentNode;
+                    var info = node.id.split('-');
+                    /*得到获取更多按钮所在的页面*/
+                    var index = info[0];
+                    /*下一页的数据*/
+                    var page = info[2] * 1 + 1;
+                    var params = {
+                        func: index,
+                        page: page
+                    };
+                    var id = index + '-content-' + page;
+                    M.get(params, function () {
+                        var elements = format(html[index], M.data[index]);
+                        // console.log(M.data, M.data[index]);
+                        $(that).before($.parseHTML(elements));
+                        resizeSwiperContainer(index);
+                    });
+                    node.id = id;
+                }
+            };
+
+            return {
+                touchAction: touchAction
+            }
+        })();
+
+        /*控制层，负责逻辑控制*/
+        AA.C = (function () {
+            var V = AA.V;
+            var doc = $(document);
+            /*监听导航栏的点击事件*/
+            doc.on('click', '.nav-item--comm', V.touchAction.nav);
+            /*监听上拉刷新事件*/
+            doc.on('click', '.more-cont', V.touchAction.more);
+        })();
+
+        window.AA = AA;
+
+    })(window);
+</script>
+</body>
+</html>

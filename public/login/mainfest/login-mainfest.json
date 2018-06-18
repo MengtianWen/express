@@ -1,0 +1,15 @@
+{
+  "short_name": "login",
+  "name": "登录",
+  "icons": [
+    {
+      "src":"",
+      "sizes": "",
+      "type": ""
+    }
+  ],
+  "start_url": "",
+  "background_color": "",
+  "Theme_color": "",
+  "display": ""
+}

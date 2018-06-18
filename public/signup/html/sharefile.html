@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>上传文件</title>
+    <script src="https://www.promisejs.org/polyfills/promise-6.1.0.js"></script>
+    <script src="https://gosspublic.alicdn.com/aliyun-oss-sdk-4.3.0.min.js"></script>
+</head>
+<body>
+<input type="file" id="file" />
+<script type="text/javascript">
+    document.getElementById('file').addEventListener('change', function (e) {
+        var file = e.target.files[0];
+        var storeAs = 'upload-file';
+        console.log(file.name + ' => ' + storeAs);
+        OSS.urllib.request("https://soft.luneice.com/oss-sts",
+            {method: 'GET'},
+            function (err, response) {
+                if (err) {
+                    return alert(err);
+                }
+                try {
+                    result = JSON.parse(response);
+                } catch (e) {
+                    return alert('parse sts response info error: ' + e.message);
+                }
+                var client = new OSS.Wrapper({
+                    accessKeyId: result.AccessKeyId,
+                    accessKeySecret: result.AccessKeySecret,
+                    stsToken: result.SecurityToken,
+                    endpoint: 'sharedocs.oss-cn-beijing.aliyuncs.com',
+                    bucket: 'sharedocs'
+                });
+                client.multipartUpload(storeAs, file).then(function (result) {
+                    console.log(result);
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            });
+    });
+</script>
+</body>
+</html>

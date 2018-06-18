@@ -1,0 +1,36 @@
+{
+  "name": "web",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "ali-mns": "^2.6.4",
+    "ali-oss": "^4.10.1",
+    "aliyun-mns": "^1.2.1",
+    "body-parser": "~1.17.1",
+    "co": "^4.6.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "^2.6.9",
+    "emailjs": "^1.0.12",
+    "express": "^4.16.1",
+    "file-stream-rotator": "^0.2.0",
+    "fs": "0.0.1-security",
+    "hash.js": "^1.1.3",
+    "jade": "~1.11.0",
+    "log4js": "^2.3.4",
+    "mongoose": "^4.12.0",
+    "morgan": "~1.8.1",
+    "mysql": "^2.15.0",
+    "node-oracle": "0.0.5",
+    "nodemailer": "^4.1.3",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "qwest": "^4.5.0",
+    "redis": "^2.8.0",
+    "serve-favicon": "^2.4.5",
+    "spdy": "^3.4.7"
+  },
+  "author": "luneice",
+  "license": "MIT"
+}

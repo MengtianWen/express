@@ -1,0 +1,261 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    min-width: 320px;
+    background-color: #FFFFFF;
+}
+
+.head-cont{
+    margin: 0;
+    padding: 20px;
+}
+
+h3, p{
+    margin: 0;
+    padding: 0;
+}
+
+.head-cont > p {
+    display: block;
+    font-size: 14px;
+    color: #5e5e5e;
+}
+
+.signup-input{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.signup-cont, .active-cont{
+    position: relative;
+    margin: 25px auto;
+    width: 100%;
+    align-items: center;
+}
+
+.signup-comm{
+    position: relative;
+}
+
+input{
+    display: block;
+    width: 100%;
+    height: 30px;
+    font-size: medium;
+    text-indent: .35em;
+    outline: none;
+    letter-spacing: .1em;
+    border: none;
+}
+
+input ~ label{
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    pointer-events: none;
+    text-indent: 2px;
+    color: rgb(150, 150, 150);
+    letter-spacing: .25em;
+    font-size: 16px;
+    -moz-transition: .2s cubic-bezier(0, .56, .05,1) all;
+    -webkit-transition: .2s cubic-bezier(0, .56, .05,1) all;
+    transition: .2s cubic-bezier(0, .56, .05,1) all;
+}
+
+input:focus ~ label, input:valid ~ label {
+    left: -5px;
+    top: -20px;
+    font-size: 14px;
+}
+
+input:focus ~ label{
+    color: rgb(66, 166, 244);
+}
+
+input ~ span {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    border-top: 1px solid rgba(100, 100, 100, .4);
+    border-bottom: 1px solid transparent;
+}
+
+input ~ span:after, input ~ span:before{
+    content: '';
+    width:0;
+    bottom: 0;
+    position: absolute;
+    border-bottom: 2px solid rgb(66, 166, 244);
+    -moz-transition: .2s cubic-bezier(0, .56, .05, 1) all;
+    -webkit-transition: .2s cubic-bezier(0, .56, .05, 1) all;
+    transition: .2s cubic-bezier(0, .56, .05, 1) all;
+}
+
+input ~ span:after{
+    left: 50%;
+}
+
+input ~ span:before{
+    right: 50%;
+}
+
+input:focus ~ span:after, input:focus ~ span:before{
+    width: 50%;
+}
+
+input.wrong ~ span:after, input.wrong ~ span:before{
+    width: 50%;
+    border-bottom: 2px solid #ea4335;
+}
+
+input ~ p{
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: -20px;
+    color: #34a853;
+    font-size: 14px;
+}
+
+input ~ p.wrong{
+    color: #ea4335;
+}
+
+input.authcode ~ p{
+    display: inline-block;
+    position: absolute;
+    right: 50%;
+    top: -20px;
+    color: #34a853;
+    font-size: 14px;
+}
+
+input.authcode ~ p.wrong{
+    color: #ea4335;
+}
+
+.next{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    color: #1e1e1e;
+    font-size: inherit;
+    text-indent: .5em;
+    letter-spacing: .5em;
+    border-radius: 2px;
+    background-color: rgba(66, 166, 244, .8);
+    box-shadow: 0 1px 3px 0 rgba(100, 100, 100, .4);
+}
+
+.next:active{
+    background-color: rgba(66, 166, 244, 1);
+    box-shadow: 0 1px 3px 0 rgba(100, 100, 100, .6);
+}
+
+.signup-active{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.authcode-cont > input {
+    height: 40px;
+}
+
+.authcode-cont > input.email ~ p {
+    display: block;
+    width: 90%;
+    text-align: center;
+}
+
+.active-cont.input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.authcode-cont.input{
+    width: 50%;
+}
+
+.authcode-cont.resend{
+    width: 35%;
+}
+
+.authcode-cont.resend > input {
+    text-indent: 0;
+    border-radius: 2px;
+    background-color: rgba(66, 166, 244, .8);
+    box-shadow: 0 1px 3px 0 rgba(100, 100, 100, .4);
+}
+
+.authcode-cont.resend > input:active {
+    border-radius: 2px;
+    background-color: rgba(66, 166, 244, 1);
+    box-shadow: 0 1px 3px 0 rgba(100, 100, 100, .5);
+}
+
+.signup.finish{
+    margin: 40px auto;
+    width: 100%;
+    height: 40px;
+}
+
+.signup.pre > input{
+    width: 50%;
+    color: rgb(150, 150, 150);
+    background-color: #FFFFFF;
+    text-align: left;
+}
+
+.signup.finish > input{
+    width: 100%;
+    height: 100%;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    border-radius: 2px;
+}
+
+.signup.finish > input{
+    background-color: rgba(66, 166, 244, .8);
+    box-shadow: 0 1px 3px 0 rgba(100, 100, 100, .4);
+}
+
+.signup.finish > input:active{
+    background-color: rgba(66, 166, 244, 1);
+    box-shadow: 0 1px 3px 0 rgba(100, 100, 100, .5);
+}
+
+.signup-res{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.signup-success--bc, .signup-failure--bc{
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+
+}
+
+.signup-success--bc{
+    background: url("../images/success.svg") no-repeat center;
+    background-size: 100%;
+}
+
+.signup-failure--bc{
+    background: url("../images/failure.svg") no-repeat center;
+    background-size: 100%;
+}
+
+.signup-success--txt, .signup-failure--txt{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    text-indent: .3em;
+    letter-spacing: .3em;
+}
